@@ -86,8 +86,8 @@ nav.main a:hover,nav.main .navitem:hover{opacity:.8}
 .promo .strip .db small{display:block;font-weight:600;opacity:.85;font-size:9px;margin-top:2px}
 .noitems{grid-column:1/-1;color:var(--lite-muted);padding:30px 0;font-size:14px}
 /* framework */
-.fw{display:grid;grid-template-columns:minmax(320px,460px) 1fr;gap:30px;align-items:center;padding:24px 0 8px}
-.fw-stage svg{width:100%;height:auto;display:block;max-width:460px;margin:0 auto}
+.fw{display:grid;grid-template-columns:minmax(400px,600px) 1fr;gap:36px;align-items:center;padding:24px 0 8px}
+.fw-stage svg{width:100%;height:auto;display:block;max-width:600px;margin:0 auto}.promo .pr svg{width:100%;height:auto;display:block;max-width:300px;margin:0 auto}
 .seg{cursor:pointer;transition:opacity .18s}
 .seg .short,.seg .ic{transition:opacity .18s}
 .seg .dim,.seg .long,.seg .arc{opacity:0;transition:opacity .18s}
@@ -149,7 +149,7 @@ footer.mb ul{list-style:none;margin:0;padding:0}footer.mb li{margin-bottom:9px}
 footer.mb li a{font-size:13px;color:var(--muted)}footer.mb li a:hover{color:var(--ink)}
 .fbot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-top:22px;font-size:12px;color:var(--muted2)}
 .fbot a{color:var(--muted2);margin-left:16px}
-.hamburger{display:none;margin-left:auto;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:.2s}.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.hamburger.open span:nth-child(2){opacity:0}.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}.mobilemenu{display:none;position:sticky;top:70px;z-index:49;background:#0a0a0a;border-bottom:1px solid var(--line)}.mobilemenu.show{display:block}.mobilemenu a{display:block;color:var(--ink);padding:15px 32px;border-top:1px solid var(--line);font-size:15px;font-weight:600}.mobilemenu a:first-child{border-top:0}.mobilemenu a.asa{color:var(--accent)}.mobilemenu a .tag{background:var(--accent);color:var(--accent-ink);font-size:9px;font-weight:800;padding:1px 6px;border-radius:4px;margin-left:6px}@media(max-width:920px){.cards{grid-template-columns:1fr 1fr}.promo{grid-template-columns:1fr}.promo .pr{display:none}.ins-layout{grid-template-columns:1fr}.side{display:none}.fw{grid-template-columns:1fr}nav.main{display:none}.hamburger{display:flex}.fcols{display:flex;flex-direction:column;gap:20px;width:100%}.fbot{flex-direction:column;align-items:flex-start;gap:10px}.fbot span{display:block}.fbot a{margin:0 16px 0 0}}@media(max-width:560px){.cards{grid-template-columns:1fr}.heroimg{padding:60px 0 44px}.heroimg h1{font-size:clamp(40px,13vw,64px)}.wrap{padding:0 20px}}
+.hamburger{display:none;margin-left:auto;flex-direction:column;gap:5px;background:none;border:0;cursor:pointer;padding:8px}.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:.2s}.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}.hamburger.open span:nth-child(2){opacity:0}.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}.mobilemenu{display:none;position:sticky;top:70px;z-index:49;background:#0a0a0a;border-bottom:1px solid var(--line)}.mobilemenu.show{display:block}.mobilemenu a{display:block;color:var(--ink);padding:15px 32px;border-top:1px solid var(--line);font-size:15px;font-weight:600}.mobilemenu a:first-child{border-top:0}.mobilemenu a.asa{color:var(--accent)}.mobilemenu a .tag{background:var(--accent);color:var(--accent-ink);font-size:9px;font-weight:800;padding:1px 6px;border-radius:4px;margin-left:6px}@media(max-width:920px){.cards{grid-template-columns:1fr 1fr}.promo{grid-template-columns:1fr}.ins-layout{grid-template-columns:1fr}.side{display:none}.fw{grid-template-columns:1fr}nav.main{display:none}.hamburger{display:flex}.fcols{display:flex;flex-direction:column;gap:20px;width:100%}.fbot{flex-direction:column;align-items:flex-start;gap:10px}.fbot span{display:block}.fbot a{margin:0 16px 0 0}}@media(max-width:560px){.cards{grid-template-columns:1fr}.heroimg{padding:60px 0 44px}.heroimg h1{font-size:clamp(40px,13vw,64px)}.wrap{padding:0 20px}}
 </style></head>
 <body>
 <div class="protonote">Prototype for internal review — Marketbridge tokens (Inter · black header · blue <b>#2F5BFF</b>). Article & nav links open the live site.</div>
@@ -204,7 +204,7 @@ function insightsView(){
      <div class="pl"><span class="tag">New · Interactive</span><h3 class="display" style="letter-spacing:-.5px">AI Signal Activation</h3>
        <p>The interactive framework: ${DATA.usecases.length} AI use cases across six GTM domains, and the ${DATA.usecases.reduce((a,u)=>a+u.tools.length,0)} vendors that solve for each. Click through to explore.</p>
        <span class="go">Explore the framework →</span></div>
-     <div class="pr"><div class="strip">${DATA.domains.map(d=>`<div class="db" style="background:${d.color}">${esc(d.short)}<small>${d.count}</small></div>`).join('')}</div></div>
+     <div class="pr">${DATA.fw.svg}</div>
    </div>`;
   const list=DATA.insights.filter(i=>(curType==='All'||i.type===curType)&&(!query||(i.title+i.desc).toLowerCase().includes(query.toLowerCase())));
   const cards=list.map(i=>{const web=i.type==='On-Demand Webinar';
