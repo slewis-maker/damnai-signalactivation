@@ -80,7 +80,7 @@ nav.main a:hover,nav.main .navitem:hover{opacity:.8}
 .promo h3{font-size:26px;margin:0 0 10px;color:#fff}
 .promo p{font-size:14px;color:#c3c7d2;margin:0 0 18px;max-width:420px}
 .promo .go{color:var(--accent);font-weight:800;font-size:14.5px}
-.promo .pr{background:#0a0a0a;border-left:1px solid #1c1c1c;display:flex;align-items:center;justify-content:center;padding:18px}
+.promo .pr{background:transparent;display:flex;align-items:center;justify-content:center;padding:18px}
 .promo .strip{display:grid;grid-template-columns:1fr 1fr;gap:7px;width:100%}
 .promo .strip .db{border-radius:7px;padding:9px 10px;color:#fff;font-size:10.5px;font-weight:700;line-height:1.15}
 .promo .strip .db small{display:block;font-weight:600;opacity:.85;font-size:9px;margin-top:2px}
@@ -249,7 +249,7 @@ function go(slug){location.hash='#/asa/uc/'+slug;}
 function domChip(dom){const d=domBy[dom];return `<span class="tagchip" style="background:${d.color}">${esc(d.short)}</span>`;}
 function showDetail(slug){const u=bySlug[slug];if(!u)return;const di=domIdxByName[u.dom];selDomain(di);
   const d=domBy[u.dom],isShow=DATA.showcase.includes(u.id);
-  const tools=u.tools.map(function(t){var dom='';try{dom=new URL(t.url).hostname.replace(/^www\./,'');}catch(e){}var init=((t.name||'?').trim()[0]||'?').toUpperCase();var cb='https://logo.clearbit.com/'+dom+'?size=64';var fv='https://www.google.com/s2/favicons?domain='+dom+'&sz=64';var chip='<span class="lchip" data-init="'+init+'"><img loading="lazy" src="'+cb+'" onerror="if(!this.dataset.f){this.dataset.f=1;this.src=\''+fv+'\';}else{this.style.display=\'none\';this.parentNode.classList.add(\'noimg\');}"></span>';return '<div class="tool">'+chip+'<div class="tn"><a href="'+esc(t.url)+'" target="_blank" rel="noopener">'+esc(t.name)+'</a><div style="margin-top:5px">'+(t.depth==='Core'?'<span class="badge core">Core</span>':'<span class="badge periph">Peripheral</span>')+(t.native?' <span class="badge native">AI-native</span>':'')+'</div></div><div class="tl">'+esc(t.line)+(t.review?'<span class="reviewflag">needs review</span>':'')+'</div></div>';}).join('');
+  const tools=u.tools.map(function(t){var dom='';try{dom=new URL(t.url).hostname.replace(/^www\./,'');}catch(e){}var init=((t.name||'?').trim()[0]||'?').toUpperCase();var cb='https://cdn.brandfetch.io/'+dom+'/w/128/h/128';var fv='https://www.google.com/s2/favicons?domain='+dom+'&sz=64';var chip='<span class="lchip" data-init="'+init+'"><img loading="lazy" src="'+cb+'" onerror="if(!this.dataset.f){this.dataset.f=1;this.src=\''+fv+'\';}else{this.style.display=\'none\';this.parentNode.classList.add(\'noimg\');}"></span>';return '<div class="tool">'+chip+'<div class="tn"><a href="'+esc(t.url)+'" target="_blank" rel="noopener">'+esc(t.name)+'</a><div style="margin-top:5px">'+(t.depth==='Core'?'<span class="badge core">Core</span>':'<span class="badge periph">Peripheral</span>')+(t.native?' <span class="badge native">AI-native</span>':'')+'</div></div><div class="tl">'+esc(t.line)+(t.review?'<span class="reviewflag">needs review</span>':'')+'</div></div>';}).join('');
   const related=DATA.usecases.filter(x=>x.dom===u.dom&&x.id!==u.id).slice(0,5).map(x=>`<a class="pill2" style="cursor:pointer;color:${d.color};border-color:${d.color}55" onclick="go('${x.slug}')">${esc(x.name)}</a>`).join(' ');
   const faq={"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":u.saf,"acceptedAnswer":{"@type":"Answer","text":u.desc}}]};
   document.getElementById('detailzone').innerHTML=`<div class="dp" id="dp">
