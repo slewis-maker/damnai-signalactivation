@@ -127,7 +127,7 @@ h1.saf{font-size:clamp(30px,4vw,52px);margin:8px 0 12px;color:#fff}
 .pov{background:#0a1030;border-left:4px solid var(--accent);border-radius:0 10px 10px 0;padding:16px 18px;border-top:0;margin:12px 0}
 .pov p{color:var(--ink)}
 .editnote{font-size:11px;color:#8ea0ff;font-weight:600;margin-top:8px}
-.tool{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
+.tool{display:flex;gap:14px;padding:13px 0;border-bottom:1px solid var(--line);align-items:flex-start}.lchip{width:34px;height:34px;border-radius:8px;background:#fff;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;margin-top:2px}.lchip img{max-width:24px;max-height:24px;display:block}.lchip.noimg{background:#e7eaf1;color:#2b2f38;font-weight:800;font-size:15px}.lchip.noimg::after{content:attr(data-init)}
 .tool:last-child{border-bottom:0}
 .tool .tn{min-width:150px}.tool .tn a{font-weight:700;color:var(--ink)}.tool .tn a:hover{color:var(--accent)}
 .tool .tl{flex:1;color:#cdd0d6;font-size:14px}
@@ -249,7 +249,7 @@ function go(slug){location.hash='#/asa/uc/'+slug;}
 function domChip(dom){const d=domBy[dom];return `<span class="tagchip" style="background:${d.color}">${esc(d.short)}</span>`;}
 function showDetail(slug){const u=bySlug[slug];if(!u)return;const di=domIdxByName[u.dom];selDomain(di);
   const d=domBy[u.dom],isShow=DATA.showcase.includes(u.id);
-  const tools=u.tools.map(t=>`<div class="tool"><div class="tn"><a href="${esc(t.url)}" target="_blank" rel="noopener">${esc(t.name)}</a><div style="margin-top:5px">${t.depth==='Core'?'<span class="badge core">Core</span>':'<span class="badge periph">Peripheral</span>'}${t.native?' <span class="badge native">AI-native</span>':''}</div></div><div class="tl">${esc(t.line)}${t.review?'<span class="reviewflag">needs review</span>':''}</div></div>`).join('');
+  const tools=u.tools.map(function(t){var dom='';try{dom=new URL(t.url).hostname.replace(/^www\./,'');}catch(e){}var init=((t.name||'?').trim()[0]||'?').toUpperCase();var cb='https://logo.clearbit.com/'+dom+'?size=64';var fv='https://www.google.com/s2/favicons?domain='+dom+'&sz=64';var chip='<span class="lchip" data-init="'+init+'"><img loading="lazy" src="'+cb+'" onerror="if(!this.dataset.f){this.dataset.f=1;this.src=\''+fv+'\';}else{this.style.display=\'none\';this.parentNode.classList.add(\'noimg\');}"></span>';return '<div class="tool">'+chip+'<div class="tn"><a href="'+esc(t.url)+'" target="_blank" rel="noopener">'+esc(t.name)+'</a><div style="margin-top:5px">'+(t.depth==='Core'?'<span class="badge core">Core</span>':'<span class="badge periph">Peripheral</span>')+(t.native?' <span class="badge native">AI-native</span>':'')+'</div></div><div class="tl">'+esc(t.line)+(t.review?'<span class="reviewflag">needs review</span>':'')+'</div></div>';}).join('');
   const related=DATA.usecases.filter(x=>x.dom===u.dom&&x.id!==u.id).slice(0,5).map(x=>`<a class="pill2" style="cursor:pointer;color:${d.color};border-color:${d.color}55" onclick="go('${x.slug}')">${esc(x.name)}</a>`).join(' ');
   const faq={"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":u.saf,"acceptedAnswer":{"@type":"Answer","text":u.desc}}]};
   document.getElementById('detailzone').innerHTML=`<div class="dp" id="dp">
